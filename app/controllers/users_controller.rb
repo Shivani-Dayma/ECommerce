@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   
     private
   
-     def find
+    def find
    @user = User.find(params[:id])
     if @user
      render json:@user,status: 200

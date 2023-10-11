@@ -1,0 +1,2 @@
+class AddCountToCart < ApplicationRecord
+end

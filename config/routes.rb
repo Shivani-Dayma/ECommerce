@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :users 
      resources :items
      resources :carts
-    
+    resources :wishlists
 
     get '/*a', to: 'application#not_found'
 

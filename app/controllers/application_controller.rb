@@ -14,11 +14,6 @@ class ApplicationController < ActionController::API
       @current_user = User.find(@decoded[:user_id])
       role = @current_user.role
       time=Time.at(@decoded[:exp])
-
-      puts "Time expiry: #{time}"
-      puts "Time now: #{Time.now}"
-      # debugger
-      
     if @decoded[:exp].present? && Time.now > time
       render json: { error: 'Token expired' }, status: :unauthorized
       return
@@ -36,14 +31,7 @@ class ApplicationController < ActionController::API
     end
   end
 
-  # def authorize_admin_librarian
-  #   library = Library.find(params[:library_id])
-  #   unless (@current_user.role == "admin") || (@current_user.role == "librarian" && @current_user.id == library.user_id)
-  #     render json: { errors: 'Unauthorized' }, status: :unauthorized
-  #     return
-  #   end
-  # end
-
+ 
   private
 
   def record_not_found
