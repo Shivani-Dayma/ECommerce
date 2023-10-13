@@ -1,6 +1,6 @@
 
 class UsersController < ApplicationController
-    # before_action :authorize_request, except: :create
+    before_action :authorize_request, except: :create
     before_action :find, only: [:show]
   
     # GET /users
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   
     private
   
-     def find
+    def find
    @user = User.find(params[:id])
     if @user
      render json:@user,status: 200

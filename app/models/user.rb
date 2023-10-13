@@ -3,7 +3,9 @@ class User < ApplicationRecord
     enum role: { supplier: 0, customer: 1}   
     after_initialize :set_default_role, if: :new_record?
 
+    has_one :cart
     has_many :items
+    has_one :wishlist
 
     has_secure_password
     validates :email, presence: true, uniqueness: true
@@ -17,7 +19,7 @@ class User < ApplicationRecord
     private
 
     def set_default_role
-        self.role ||= :general
+        self.role ||= :customer
     end
 
     
