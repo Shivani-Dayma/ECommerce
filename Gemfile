@@ -53,3 +53,14 @@ end
 
 
 gem 'rails-erd'
+
+gem 'ransack'
+
+gem 'jbuilder'
+gem "searchkick"
+
+gem 'byebug'
+gem 'rspec-rails'
+gem 'factory_bot_rails'
+
+

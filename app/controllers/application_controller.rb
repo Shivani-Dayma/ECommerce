@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  # rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from JWT::DecodeError, with: :jwt_decode_error
 
   def not_found
@@ -14,9 +14,10 @@ class ApplicationController < ActionController::API
       @current_user = User.find(@decoded[:user_id])
       role = @current_user.role
       time=Time.at(@decoded[:exp])
-    if @decoded[:exp].present? && Time.now > time
-      render json: { error: 'Token expired' }, status: :unauthorized
-      return
+        # if @decoded[:exp].present? && Time.now > time
+        if @current_user.token.nil?
+        render json: { error: 'Your session is expired' }, status: :unauthorized
+        return
     end
     rescue ActiveRecord::RecordNotFound => e
       render json: { errors: e.message }, status: :unauthorized
