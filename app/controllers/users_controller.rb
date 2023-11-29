@@ -5,10 +5,10 @@ class UsersController < ApplicationController
   
     # GET /users
     def index
-      @users = User.all
-      render json: @users, status: :ok
+      @user = User.all
     end
-  
+    
+    
     # GET /users/{username}
     def show
       render json: @user, status: :ok
@@ -51,6 +51,11 @@ class UsersController < ApplicationController
     else
      render json: "Supplier is not found"
   end
+end
+
+def logout
+  # You can add code here to invalidate the JWT token if needed.
+  render json: { message: 'Logged out successfully' }
 end
     def user_params
       params.permit(
